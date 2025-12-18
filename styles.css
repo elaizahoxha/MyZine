@@ -1,0 +1,356 @@
+/* ------------------------------------
+   Softness Case Study — Premium V8
+   Design: Elaiza Hoxha ✦ 2025
+-------------------------------------*/
+
+:root {
+  --cream: #F7F2F5;            /* softer background */
+  --champagne: #E2D4DF;        /* mauve accent cards */
+  
+  --text-dark: #2D1F29;        /* soft plum text */
+  --text-gray: #5B4F56;        /* gentle muted gray */
+
+  --gold-accent: #C1A370;      /* antique muted gold */
+  --graphite: #2A262A;         /* deep plum charcoal */
+
+  --fade-time: .9s;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* NAVIGATION */
+.navbar {
+  position: fixed;
+  width: 100%;
+  padding: 20px 8%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+  transition: .4s ease;
+}
+.navbar.scrolled {
+  background: rgba(255,255,255,0.9);
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.nav-logo {
+  font-family: "Playfair Display";
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-gray);
+  position: relative;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: var(--gold-accent);
+  left: 0;
+  bottom: -5px;
+  transition: .3s ease;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 12%;
+}
+.hero-text h1 {
+  font-family: 'Playfair Display';
+  font-size: 98px;
+  line-height: 0.9;
+  margin: 0;
+}
+.hero-subtitle {
+  font-size: 28px;
+  max-width: 420px;
+  margin: 18px 0;
+}
+.hero-tags {
+  opacity: 0.7;
+  font-size: 15px;
+  margin-top: 6px;
+}
+.hero-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(18% 0,100% 0,100% 100%,0 100%);
+}
+.scroll-indicator {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  letter-spacing: 3px;
+  opacity: .6;
+  animation: bounce 1.8s infinite ease;
+}
+@keyframes bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, 10px); }
+}
+
+/* SECTIONS */
+.section {
+  padding: 160px 18%;
+}
+
+
+#reflection .body,
+#reflection .text-large {
+  max-width: 820px; /* clean readable width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#reflection h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+#reflection h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gold-accent);
+  border-radius: 2px;
+}
+
+
+
+
+.section.dark {
+  background: var(--graphite);
+  color: var(--cream);
+}
+.section.light {
+  background: var(--cream);
+}
+h2 {
+  font-family: "Playfair Display";
+  font-size: 54px;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+.text-large {
+  font-size: 24px;
+  line-height: 1.6;
+  width: 85%;
+}
+.body {
+  max-width: 760px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ANGLED SECTION TOPS — Bold Fashion Version */
+.angled {
+  position: relative;
+  overflow: hidden;
+}
+
+.angled:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -150px;
+  height: 250px;
+  background: inherit;
+  transform: skewY(-6deg);
+  transform-origin: top left;
+  z-index: -1;
+}
+
+
+
+
+
+/* TWO COLUMN */
+.two-col {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 30px;
+}
+
+/* QUOTES */
+.quote {
+  font-size: 26px;
+  font-style: italic;
+  line-height: 1.4;
+  border-left: 3px solid var(--gold-accent);
+  padding-left: 18px;
+  opacity: .9;
+}
+
+/* PROCESS list */
+.split {
+  display: flex;
+  gap: 50px;
+}
+.process-list {
+  font-size: 18px;
+  line-height: 1.8;
+  list-style: none;
+  padding-left: 0;
+}
+.process-list li::before {
+  content: "✦ ";
+  color: var(--gold-accent);
+}
+
+/* HORIZONTAL SCROLL */
+.horizontal-scroll {
+  display: flex;
+  gap: 22px;
+  padding: 35px 0;
+  overflow-x: auto;
+}
+.horizontal-scroll img {
+  width: 340px;
+  border-radius: 8px;
+  transition: .3s;
+}
+.horizontal-scroll img:hover {
+  transform: translateY(-8px);
+}
+
+/* VISUAL SYSTEM CARDS */
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* force 3 per row */
+  gap: 35px;
+  justify-items: center; /* optional — centers cards */
+}
+
+.visual-card {
+  padding: 25px;
+  background: var(--champagne);
+  border-radius: 10px;
+  transition: .4s;
+}
+.visual-card:hover {
+  transform: translateY(-4px);
+}
+.visual-card h3 {
+  font-family: "Playfair Display";
+  font-size: 30px;
+}
+
+/* GALLERY */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* exactly 3 per row */
+  gap: 22px;
+  margin-top: 50px;
+  justify-items: center;
+}
+
+
+
+.gallery-grid img {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform .4s, filter .4s;
+}
+.gallery-grid img:hover {
+  transform: scale(1.04);
+  filter: brightness(1.1);
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,.75);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+#lightbox img {
+  max-height: 88%;
+  max-width: 88%;
+  border-radius: 10px;
+}
+
+/* OUTCOMES */
+.outcome-list {
+  font-size: 20px;
+  margin-top: 30px;
+  line-height: 1.8;
+}
+.footer-tag {
+  margin-top: 60px;
+  text-align: center;
+  opacity: .8;
+  font-size: 16px;
+}
+
+/* SCROLL REVEALS */
+.fade-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: var(--fade-time) cubic-bezier(.18,.89,.32,1.28);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  h2 { font-size: 42px; }
+  .hero-text h1 { font-size: 58px; }
+  .two-col { grid-template-columns: 1fr; }
+  .split { flex-direction: column; }
+  .section { padding: 100px 10%; }
+}
